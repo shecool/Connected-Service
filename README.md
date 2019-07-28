@@ -36,8 +36,8 @@ In addition our solution also leverages
 
 ## Team Members
 
-* Samantha Yiu <cbogdon@cisco.com> - Trans PNC Enterprise Account
-* Erik Lefebvre <eriklef@cisco.com> - Greater Pennsylvania Territory
+* Samantha Yiu <cbogdon@cisco.com> - Ontario Central Territories Account
+* Erik Lefebvre <eriklef@cisco.com> - British Columbia Territories Account
 
 
 ## Solution Components
@@ -47,7 +47,7 @@ In addition our solution also leverages
 There are two main modules in the solution. They are described below:
 
 ### Person/People detection - mqtt_detect_people.py
-The mqtt_detect_people.py script starts the MQTT client, subscribes to the MV camera topic, checks if a person is present and if the video endpoint is not already on a call initates the calling script. 
+The mqtt_detect_people.py script is responsible for detecting if a person walks into frame and initiating a new call if the video endpoint is not already on a call.
 
 The MQTT script performs the following functions:
 1. Starts the MQTT client on loop
@@ -57,7 +57,7 @@ The MQTT script performs the following functions:
 5. If not already on a call, initializes the calling script
 
 ### Calling - image_recog_calling.py
-The image_recog_calling.py script grabs a snapshot of the current camera feed and submits it to Microsoft Cognitive Services to perform a double blind check and ensure the MV people detection flag is not a false positive. If there is indeed a person it initiates a call to the predefined hunt group.
+The image_recog_calling.py script grabs a snapshot of the current camera feed and submits it to Microsoft Cognitive Services to perform a double-blind check and ensure the MV people detection flag is not a false positive. If there is indeed a person, it initiates a call to the predefined hunt group.
 
 The Calling script performs the following functions:
 1. Grab snapshot from MV camera
