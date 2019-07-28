@@ -25,11 +25,12 @@ Our solution leverages the following Cisco technologies:
 *  [WebEx Room Series](https://www.cisco.com/c/en/us/products/collaboration-endpoints/webex-room-series/index.html)
 	*  [Cisco Video Endpoint XAPI](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/)
 * [Cisco Unified Communications Manager (CUCM)](https://www.cisco.com/c/en_ca/products/unified-communications/unified-communications-manager-callmanager/index.html)
-*  [Meraki MV Sense API](https://developer.cisco.com/meraki/mv-sense/)
-
+*  [Meraki MV Camera](https://meraki.cisco.com/products/security-cameras)
+	*  [Meraki MV Sense API](https://developer.cisco.com/meraki/mv-sense/)
 
 In addition our solution also leverages
 *  [MQTT](https://developer.cisco.com/meraki/mv-sense/#!mqtt)
+	* Meraki MV MQTT parser (https://github.com/shiyuechengineer/adventure-lab)
 *  [Microsoft Cognitive Services API](https://azure.microsoft.com/en-ca/services/cognitive-services/)
 
 
@@ -41,50 +42,9 @@ In addition our solution also leverages
 
 ## Solution Components
 
-### Hardware
-* Webex Room Kit
-* Meraki MV12 Camera
-* CUCM Server
-
-### API's Used
-* Webex Room Kit Rest API
-* Meraki MV Sense API
-* [Meraki Snapshot API](https://developer.cisco.com/meraki/mv-sense/#!rest-api/snapshot)
-* Azure Cognitive Services 
-
-	* Face API
-
-### Code
-* [Python 3.7.3](https://www.python.org/)
-	* Meraki MV MQTT parser (https://github.com/shiyuechengineer/adventure-lab)
-* [MQTT-Paho](https://www.eclipse.org/paho/)
-
-
-Video Endpoints
-REST API (XML)
-
-CUCM Server
-Hunt Group
-Video Endpoint Registration
-
-Meraki MV12 Camera
-MQTT Client
-MV Sense API
-Snapshot API
-
-MQTT Broker Server
-Ubuntu, Mosquitto
-
-Ubuntu VM
-Python script - parse info and take action!
-
-Azure Cognitive Services 
-Face API
-
-
 ![Architecture](img/architecture.png)
 
-There are three main modules in the solution.   They are described below:
+There are two main modules in the solution. They are described below:
 
 ### Person/People detection - mqtt_detect_people.py
 The mqtt_detect_people.py script starts the MQTT client, subscribes to the MV camera topic, checks if a person is present and if the video endpoint is not already on a call initates the calling script. 
@@ -108,13 +68,20 @@ The Calling script performs the following functions:
 
 ### Overall Flow
 
-## Installation
+## Setup/Installation
 
+0. Install [Python 3+](https://www.python.org/downloads/)
+1. Clone this repository
+```
+git clone https://github.com/eriklef/Connected-Service.git
+```
+2. Update credentials.ini file with relevant information
+3. Install 
 
-## Setup
-
-The credentials.ini file should be supplied with your own Meraki API, Microsoft Azure  detailed information and documentation can be provided in the following links:
-
+5. Start the script
+```
+python3 mqtt_detect_people.py
+```
 
 ## License
 
