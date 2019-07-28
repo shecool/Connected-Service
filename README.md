@@ -30,7 +30,7 @@ Our solution leverages the following Cisco technologies:
 
 In addition our solution also leverages
 *  [MQTT](https://developer.cisco.com/meraki/mv-sense/#!mqtt)
-	* Meraki MV MQTT parser (https://github.com/shiyuechengineer/adventure-lab)
+	* [Meraki MV MQTT parser](https://github.com/shiyuechengineer/adventure-lab)
 *  [Microsoft Cognitive Services API](https://azure.microsoft.com/en-ca/services/cognitive-services/)
 
 
@@ -68,20 +68,27 @@ The Calling script performs the following functions:
 
 ### Overall Flow
 
+## Prerequisite
+Besides having the code installed correctly and the credentials file updated, end users will need to supply their own hardware and preconfigured CUCM. End users will also need to request free access keys for Microsoft Cognitive Services Face API from here: https://azure.microsoft.com/en-ca/try/cognitive-services/my-apis/?api=face-api.
+
 ## Setup/Installation
 
 0. Install [Python 3+](https://www.python.org/downloads/)
-1. Clone this repository
+1. Install Mosquitto 
+```
+pip install paho-mqtt
+```
+2. Clone this repository
 ```
 git clone https://github.com/eriklef/Connected-Service.git
 ```
-2. Update credentials.ini file with relevant information
-3. Install 
-
-5. Start the script
+3. Update credentials.ini file with relevant information
+4. [Point Meraki MV camera to MQTT Broker](https://developer.cisco.com/meraki/mv-sense/#!mqtt/configuring-mqtt-in-the-dashboard)
+4. Start the script
 ```
 python3 mqtt_detect_people.py
 ```
+
 
 ## License
 
