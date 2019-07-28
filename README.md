@@ -36,7 +36,7 @@ In addition our solution also leverages
 
 ## Team Members
 
-* Samantha Yiu <cbogdon@cisco.com> - Ontario Central Territories Account
+* Samantha Yiu <sayiu@cisco.com> - Ontario Central Territories Account
 * Erik Lefebvre <eriklef@cisco.com> - British Columbia Territories Account
 
 
