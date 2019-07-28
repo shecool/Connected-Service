@@ -23,7 +23,7 @@ Our proposed solution leverages Meraki MV Camera's Sense API to detect when a pe
 Our solution leverages the following Cisco technologies:
 
 *  [WebEx Room Series](https://www.cisco.com/c/en/us/products/collaboration-endpoints/webex-room-series/index.html)
-*  [Cisco Video Endpoint XAPI](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/)
+	*  [Cisco Video Endpoint XAPI](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/)
 * [Cisco Unified Communications Manager (CUCM)](https://www.cisco.com/c/en_ca/products/unified-communications/unified-communications-manager-callmanager/index.html)
 *  [Meraki MV Sense API](https://developer.cisco.com/meraki/mv-sense/)
 
@@ -86,7 +86,7 @@ Face API
 
 There are three main modules in the solution.   They are described below:
 
-### Person/People detection
+### Person/People detection - mqtt_detect_people.py
 The mqtt_detect_people.py script starts the MQTT client, subscribes to the MV camera topic, checks if a person is present and if the video endpoint is not already on a call initates the calling script. 
 
 The MQTT script performs the following functions:
@@ -96,7 +96,7 @@ The MQTT script performs the following functions:
 4. If people are found, it checks if the video endpoint is already on a call
 5. If not already on a call, initializes the calling script
 
-### Calling
+### Calling - image_recog_calling.py
 The image_recog_calling.py script grabs a snapshot of the current camera feed and submits it to Microsoft Cognitive Services to perform a double blind check and ensure the MV people detection flag is not a false positive. If there is indeed a person it initiates a call to the predefined hunt group.
 
 The Calling script performs the following functions:
@@ -105,8 +105,6 @@ The Calling script performs the following functions:
 3. Analyze json response
 4. If a person is confirmed present, initates call to hunt predefined huntgroup
 
-
-## Usage
 
 ### Overall Flow
 
@@ -129,3 +127,7 @@ Our code of conduct is available [here](./CODE_OF_CONDUCT.md)
 ## Contributing
 
 See our contributing guidelines [here](./CONTRIBUTING.md)
+
+## Video
+
+See our video explaining Connected Service [here](https://www.youtube.com/watch?v=UZ_nbT0ww0I)
