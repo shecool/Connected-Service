@@ -23,10 +23,11 @@ Our proposed solution leverages Meraki MV Camera's Sense API to detect when a pe
 Our solution leverages the following Cisco technologies:
 
 *  [WebEx Room Series](https://www.cisco.com/c/en/us/products/collaboration-endpoints/webex-room-series/index.html)
-	*  [Cisco Video Endpoint XAPI](https://www.cisco.com/c/dam/en/us/td/docs/telepresence/endpoint/)
+	*  [Cisco Video Endpoint API](https://www.cisco.com/c/en/us/support/collaboration-endpoints/spark-room-kit-series/products-command-reference-list.html)
 * [Cisco Unified Communications Manager (CUCM)](https://www.cisco.com/c/en_ca/products/unified-communications/unified-communications-manager-callmanager/index.html)
 *  [Meraki MV Camera](https://meraki.cisco.com/products/security-cameras)
 	*  [Meraki MV Sense API](https://developer.cisco.com/meraki/mv-sense/)
+	*  [Meraki MV Snapshot API](https://developer.cisco.com/meraki/mv-sense/)
 
 In addition our solution also leverages
 *  [MQTT](https://developer.cisco.com/meraki/mv-sense/#!mqtt)
@@ -36,7 +37,7 @@ In addition our solution also leverages
 
 ## Team Members
 
-* Samantha Yiu <cbogdon@cisco.com> - Ontario Central Territories Account
+* Samantha Yiu <sayiu@cisco.com> - Ontario Central Territories Account
 * Erik Lefebvre <eriklef@cisco.com> - British Columbia Territories Account
 
 
@@ -63,28 +64,32 @@ The Calling script performs the following functions:
 1. Grab snapshot from MV camera
 2. Submit snapshot to Microsoft Cognitive Services 
 3. Analyze json response
-4. If a person is confirmed present, initates call to hunt predefined huntgroup
+4. If a person is confirmed present, initates call to predefined huntgroup
 
 
 ### Overall Flow
 
 ## Prerequisite
-Besides having the code installed correctly and the credentials file updated, end users will need to supply their own hardware and preconfigured CUCM. End users will also need to request free access keys for Microsoft Cognitive Services Face API from here: https://azure.microsoft.com/en-ca/try/cognitive-services/my-apis/?api=face-api.
+Besides having the code installed correctly and the credentials file updated, end users will need to supply their own hardware and preconfigured CUCM. End users will also need to request a key for Microsoft Cognitive Services Face API from here: https://azure.microsoft.com/en-ca/try/cognitive-services/my-apis/?api=face-api.
 
 ## Setup/Installation
 
 0. Install [Python 3+](https://www.python.org/downloads/)
 1. Install Mosquitto 
 ```
-pip install paho-mqtt
+pip3 install paho-mqtt
 ```
-2. Clone this repository
+2. Install requests module
+```
+pip3 install requests
+```
+3. Clone this repository
 ```
 git clone https://github.com/eriklef/Connected-Service.git
 ```
-3. Update credentials.ini file with relevant information
-4. [Point Meraki MV camera to MQTT Broker](https://developer.cisco.com/meraki/mv-sense/#!mqtt/configuring-mqtt-in-the-dashboard)
-4. Start the script
+4. Update credentials.ini file with relevant information
+5. [Point Meraki MV camera to MQTT Broker](https://developer.cisco.com/meraki/mv-sense/#!mqtt/configuring-mqtt-in-the-dashboard)
+6. Start the script
 ```
 python3 mqtt_detect_people.py
 ```
